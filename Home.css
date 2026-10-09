@@ -1,0 +1,179 @@
+header {
+    background-image:url('vegetables-set-left-black-slate.jpg');
+    background-size: cover;
+    background-position: center 50%;
+    background-repeat: no-repeat;
+
+    color: none;
+    padding: 50px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    margin: 10px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.6);
+}
+header h1 {
+    margin: 0;
+}
+.menu-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    
+}
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    background: #111111;
+    padding-top: 80px;
+    transition: left 0.4s ease;
+    z-index: 1000;
+
+}
+.side-menu.open {
+    left: 0;
+}
+.side-menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 18px 25px;
+    font-size: 18px;
+
+}
+.hotline {
+    color: white;
+    position: absolute;
+    bottom: 80px;
+    
+
+}
+.contact-info {
+    color: white;
+    position: absolute;
+    bottom: 100px;
+}
+.footer {
+    color: rgb(2, 2, 2);
+    text-align: center;
+}
+.Menu {
+    background-color: #e9e2e2;
+    font-size: 15px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+.logo-area {
+    display: flex;
+    color: #e05d06;
+    align-items: center;
+    gap: 15px;
+}
+.close-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.close-btn.close-btn:honer {
+    color: #ff4d4d;
+}
+.name-section p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #f5f4f3;
+    margin-top: 5px;
+    margin-bottom: none;
+    font-family: 'Arial', sans-serif;
+}
+.name-section h1 {
+    font-size: 40px;
+    margin: 0;
+    color: #d15401;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    font-family: 'Arial', sans-serif;
+}
+.hero {
+    background-image: url('frying-pan-empty-with-various-spices-black-table.jpg');
+    background-size: cover;
+    background-position: center 90%;
+    background-repeat: no-repeat;
+
+    padding: 50px 20px 0px 20px;
+    text-align: center;
+    color: rgb(255, 94, 0);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-height: 400px;
+    justify-content: flex-start;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    
+}
+.hero h2, .hero p {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+.hero h2, .hero p {
+    color: white;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #2b2a29;
+}
+.bottom-text {
+    font-size: 14px;
+    margin-top: auto;
+    margin-bottom: 15px;
+    color: white;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+}
+@media screen and (max-width: 900px) {
+    header {
+        flex-wrap: wrap;
+        padding: 15px 15px;
+        margin: 10px 15px;
+        gap: 10px;
+    
+    }
+    .logo-area {
+        flex-grow: 1;
+    }
+    .name-section h1 {
+        font-size: 22px;
+    }
+    .name-section p {
+        font-size: 11px;
+    }
+    .menu {
+        font-size: 13px;
+        padding: 8px 15px;
+        white-space: nowrap;
+       }
+       .header-logo {
+        height: 30px;
+       }
+
+}

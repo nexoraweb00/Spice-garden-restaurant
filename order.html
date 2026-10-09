@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order - Spice Garden</title>
+    <link rel="stylesheet" href="Home.css">
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+    <section class="menu-page">
+        <div class="menu-title-box">
+            <h1>Your Order</h1>
+        </div>
+
+        <div class="order-container">
+            <div class="add-item-section">
+                <select id="itemSelect" class="item-select">
+                    <option value="1200" data-name="Spicy Chicken Curry">Spicy Chicken Curry - Rs. 1200</option>
+                    <option value="950" data-name="Vegetable Fried Rice">Vegetable Fried Rice - Rs. 950</option>
+                    <option value="1500" data-name="Cheese Kottu">Cheese Kottu - Rs. 1500</option>
+                    <option value="800" data-name="Chocolate Lava Cake">Chocolate Lava Cake - Rs. 800</option>
+                    <option value="600" data-name="Ice Cream Sundae">Ice Cream Sundae - Rs. 600</option>
+                    <option value="450" data-name="Fruit salad">Fruit salad - Rs.450</option>
+                    <option value="350" data-name="Fresh lime juice">Fresh lime juice - Rs.350</option>
+                    <option value="750" data-name="Chocolate milkshake">Chocolate milkshake - Rs.750</option>
+                    <option value="500" data-name="Iced Coffee">Iced Coffee - Rs.500</option>               
+                </select>
+                
+                <input type="number" id="qtyInput" value="1" min="1" class="qty-input">
+                <button type="button" onclick="addToCart()" class="add-btn">Add to Order</button>
+            </div>
+
+            <div id="cart-items" class="cart-items">
+                <p style="color: #aaa; text-align: center;">Your cart is empty. Add items above!</p>
+            </div>
+
+            <div class="total-section">
+                <h2>Total Amount:</h2>
+                <h2 class="grand-total">Rs. <span id="total-price">0</span></h2>
+            </div>
+            
+            <button type="button" class="order-btn" onclick="placeOrder()">Place Order ✅</button>
+        </div>
+    </section>
+
+    <script>
+        let cart = []; 
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const itemName = urlParams.get('item');
+            const itemPrice = urlParams.get('price');
+            
+            if (itemName && itemPrice) {
+                const cleanName = decodeURIComponent(itemName); 
+                
+                const existingItem = cart.find(item => item.name === cleanName);
+                if (existingItem) {
+                    existingItem.qty += 1;
+                } else {
+                    cart.push({ name: cleanName, price: parseInt(itemPrice), qty: 1 });
+                }
+                
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+            renderCart(); 
+        };
+
+        function addToCart() {
+            const select = document.getElementById('itemSelect');
+            
+            if (!select) {
+                console.error("Error: itemSelect not found!");
+                return;
+            }
+
+            const selectedOption = select.options[select.selectedIndex];
+            const name = selectedOption.getAttribute('data-name');
+            const price = parseInt(selectedOption.value);
+            const qty = parseInt(document.getElementById('qtyInput').value) || 1;
+
+            if (qty > 0 && name) {
+                const existingItem = cart.find(item => item.name === name);
+                if (existingItem) {
+                    existingItem.qty += qty; 
+                } else {
+                    cart.push({ name: name, price: price, qty: qty }); 
+                }
+                renderCart();
+                document.getElementById('qtyInput').value = 1; 
+            }
+        }
+
+        function renderCart() {
+            const cartDiv = document.getElementById('cart-items');
+            const totalPriceSpan = document.getElementById('total-price');
+            
+            if (cart.length === 0) {
+                cartDiv.innerHTML = '<p style="color: #aaa; text-align: center;">Your cart is empty. Add items above!</p>';
+                totalPriceSpan.innerText = '0';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.qty;
+                total += itemTotal;
+                html += `
+                    <div class="cart-row">
+                        <span>${item.name} (x${item.qty})</span>
+                        <span>Rs. ${itemTotal}</span>
+                        <button type="button" onclick="removeItem(${index})" class="remove-btn">❌</button>
+                    </div>
+                `;
+            });
+
+            cartDiv.innerHTML = html;
+            totalPriceSpan.innerText = total;
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1); 
+            renderCart();
+        }
+
+        function placeOrder() {
+            if (cart.length === 0) {
+                alert("Please add some items to your order first!");
+                return;
+            }
+            alert("Your order has been placed successfully! 🎉");
+            cart = []; 
+            renderCart();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+         <meta name="viewport"
+         content="width=device-width,
+         initial-scale=1.0">
+         <title>Spice Garden restaurant</title>
+         <link rel="stylesheet" href="Home.css">
+         </head>
+         <body><header>
+            <div class="logo-area">
+            <button class="menu-toggle" onclick="toggleMenu()">🏡☰</button>
+            <div class="name-section">
+                <h1>Spice Garden</h1>
+                <h2><p>taste like a heaven</p></h2>
+            </div>
+            </div>
+        
+            <button class="Menu" onclick="window.location.href='menu.html'">Food-Menu🍔</button>
+            </header>
+            <nav id="sidemenu" class="side-menu">
+                <button class="close-btn" onclick="closeMenu()">✖</button>
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="about.html">about Us</a>
+                <a href="contact">contact</a>
+                <div class="contact-info">
+                        <h4 class="hotline">Hotline:..............</h4>
+                        <h4>example@gmail.com</h4>
+                        <h4>address</h4>
+                </nav></div>
+            </header>
+                <section id="home" class="hero">
+                    <h2><center>Welcome to spice Garden</center></h2>
+                    <p><center>Delicious food made with love </center></p>    
+                <footer class="bottom-text">@Spice Garden Restuarant</footer></section>
+                <script src="Home.js">
+                    function closeMenu() {
+                        document.querySelector('.side-menu').classList.remove('open');
+                    }
+                </script>
+                </body>
+                </html>                                    
